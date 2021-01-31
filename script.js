@@ -5,7 +5,7 @@ function ticketUnitChange(ticket, click) {
     const ticketInputNumber = parseInt(ticketInput.value);
     let inputNumber = ticketInputNumber;
 
-    if (click == 'plus' ) {
+    if (click == 'plus') {
         inputNumber = ticketInputNumber + 1;
     } if (click == 'minus' && ticketInputNumber > 0) {
         inputNumber = ticketInputNumber - 1;
@@ -35,20 +35,28 @@ function calculateTotal() {
     const inTotal = subTotal + vat;
     document.getElementById("in-total").innerText = '$ ' + inTotal;
 
-
 }
 
 // alert on book-now button and go-back button
 
-document.getElementById("book-now").addEventListener('click',function () {
-    
-    alert("Dear Customer, To get our service you must have wear a mask on your mouth.");
 
-    document.getElementById("booking-input").style.display = 'none';
-    document.getElementById("booking-confirm").style.display = 'block';
-})
-document.getElementById("go-back").addEventListener('click', function() {
-
+document.getElementById("go-back").addEventListener('click', function () {
     document.getElementById("booking-input").style.display = 'block';
     document.getElementById("booking-confirm").style.display = 'none';
 })
+
+document.getElementById("book-now").addEventListener('click', function () {
+    const inTotal = document.getElementById("in-total").innerText;
+    const inTotalNumber = parseInt(inTotal.replace("$", ""));
+    // console.log(inTotalNumber);
+    if (inTotalNumber == 0 ) {
+        alert("Dear Customer, Please select number of ticket. Without ticket you can't get booking. Thank you.");
+    }if(inTotalNumber > 0){
+        alert("Dear Customer, To get our service you must have wear a mask on your mouth. Thank you.");
+        document.getElementById("booking-input").style.display = 'none';
+        document.getElementById("booking-confirm").style.display = 'block';
+    }
+})
+
+
+
